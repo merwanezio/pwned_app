@@ -38,6 +38,7 @@ dependencies {
 
     implementation 'in.shadowfax:proswipebutton:1.1'
 
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.45-androidx'
 
 
     testImplementation 'junit:junit:4.12'
