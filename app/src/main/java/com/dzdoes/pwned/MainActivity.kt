@@ -1,5 +1,6 @@
 package com.dzdoes.pwned
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,16 +19,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btn_send.setOnSwipeListener {
-            search()
+
+            if(!search())
+                btn_send.morphToCircle()
         }
+
+
 
 
     }
 
-    private fun search() {
+    private fun search() :Boolean{
 
-        if(!validEmail(et_email.text))
-            return
+        if(!validEmail(et_email.text.toString()))
+            return false
 
         var gson = GsonBuilder()
             .setLenient()
@@ -51,10 +57,17 @@ class MainActivity : AppCompatActivity() {
 
         btn_send.showResultIcon(true)
 
+
+        return true
     }
 
     private fun validEmail(email:String): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if(email.equals(""))
+            return false
+
+
+
+        return true
     }
 
 
